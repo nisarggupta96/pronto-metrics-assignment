@@ -1,0 +1,16 @@
+docker run \
+ --name influxdb2 \
+ --publish 8086:8086 \
+ --mount type=volume,source=influxdb2-data,target=/var/lib/influxdb2 \
+ --mount type=volume,source=influxdb2-config,target=/etc/influxdb2 \
+ --env DOCKER_INFLUXDB_INIT_MODE=setup \
+ --env DOCKER_INFLUXDB_INIT_USERNAME=ADMIN_USERNAME \
+ --env DOCKER_INFLUXDB_INIT_PASSWORD=ADMIN_PASSWORD \
+ --env DOCKER_INFLUXDB_INIT_ORG=ORG_NAME \
+ --env DOCKER_INFLUXDB_INIT_BUCKET=METRICS \
+ --env DOCKER_INFLUXDB_INIT_RETENTION=30d \
+ --env DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token \
+ influxdb:2
+
+
+export INFLUXDB_TOKEN={TOKEN_FROM_ADMIN}
